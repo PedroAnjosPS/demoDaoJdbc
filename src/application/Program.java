@@ -1,7 +1,9 @@
 package application;
 
-import java.util.Date;
+import java.util.Date; 
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -10,7 +12,10 @@ import model.entities.Seller;
 
 public class Program {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {	
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
 		System.out.println("======= TEST 1: Seller findById =======");
@@ -34,9 +39,35 @@ public class Program {
 		}
 		
 		System.out.println("\n======= TEST 4: Seller insert =======");
-		Seller newSeller = new Seller(null, "Joel", "joel@gmail.com", new Date(), 6000.00, dep);
+		Seller newSeller = new Seller(null, "Manuel", "manuel@gmail.com", new Date(), 3000.00, dep);
 		sellerDao.insert(newSeller);
 		System.out.println("Inserted! New id = " + newSeller.getId());
+		
+		System.out.println("\n======= TEST 5: Seller update =======");
+		seller = sellerDao.findById(9);
+		
+		System.out.println("Update the seller's name and baseSalary");
+		
+		System.out.print("Name: ");
+		String name = sc.nextLine();
+		seller.setName(name);
+		
+		System.out.print("BaseSalary: ");
+		double baseSalary = sc.nextDouble();
+		seller.setBaseSalary(baseSalary);
+		
+		sellerDao.update(seller);
+		System.out.println("Updated successfully!");
+		
+		System.out.println("\n======= TEST 6: Seller delete =======");
+		
+		System.out.print("Enter id for delete test: ");
+		int id = sc.nextInt();
+		sellerDao.deleteById(id);
+		
+		System.out.println("Deleted successfully!");
+		
+		sc.close();
 	}
 
 }
