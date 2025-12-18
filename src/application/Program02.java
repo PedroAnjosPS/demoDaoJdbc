@@ -20,6 +20,7 @@ public class Program02 {
 		depDao.insert(dep);
 		System.out.println("Inserted! New Id = " + dep.getId());
 		
+		
 		System.out.println("\n======= TEST 2: Department update =======");		
 		
 		System.out.print("Update the deparment name: ");
@@ -29,13 +30,21 @@ public class Program02 {
 		depDao.update(dep);				
 		System.out.println("Updated successfully!");
 		
-		System.out.println("\n======= TEST 3: Department delete =======");
+		
+		System.out.println("\n======= TEST 3: Department deleteById =======");
 		System.out.print("Enter id for delete test: ");
 		int id = sc.nextInt();
 		
 		depDao.deleteById(id);
 		System.out.println("Deleted successfully!");
 		
+		
+		System.out.println("\n======= TEST 4: Department findById =======");
+		System.out.print("Enter a department id: ");
+		int newId = sc.nextInt();
+		
+		Department dep2 = depDao.findById(newId);
+		System.out.println(dep2);		
 		
 		sc.close();
 	}
