@@ -20,6 +20,15 @@ public class Program02 {
 		depDao.insert(dep);
 		System.out.println("Inserted! New Id = " + dep.getId());
 		
+		System.out.println("\n======= TEST 2: Department update =======");		
+		
+		System.out.print("Update the deparment name: ");
+		String depName = sc.nextLine();
+		dep.setName(depName);
+		
+		depDao.update(dep);				
+		System.out.println("Updated successfully!");
+		
 		sc.close();
 	}
 
