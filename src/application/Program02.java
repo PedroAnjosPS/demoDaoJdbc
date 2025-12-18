@@ -1,5 +1,6 @@
 package application;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -45,6 +46,10 @@ public class Program02 {
 		
 		Department dep2 = depDao.findById(newId);
 		System.out.println(dep2);		
+		
+		System.out.println("\n======= TEST 5: Department findAll =======");
+		List<Department> list = depDao.findAll();
+		list.forEach(System.out::println);
 		
 		sc.close();
 	}
